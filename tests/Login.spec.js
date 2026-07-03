@@ -5,8 +5,8 @@ import {LoginPage} from '../pages/LoginPage';
 test('Login with valid credentials', async ({ page }) => {
     const loginPage = new LoginPage(page);
 
-    await loginPage.gotoLoginPage();
-    await loginPage.login('pavanol', 'test@123');
+    await loginPage.gotoLoginPage()
+    await loginPage.login('pavanol', 'test@123')
 //   await page.goto('https://demoblaze.com/index.html');
 //     await page.locator('#login2').click();
 //     await page.locator('#loginusername').fill('testuser');
