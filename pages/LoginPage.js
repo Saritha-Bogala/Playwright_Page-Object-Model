@@ -10,7 +10,8 @@ class LoginPage{
     }
 
     async gotoLoginPage(){
-        await this.page.goto('https://demoblaze.com/index.html');
+        await this.page.goto('https://demoblaze.com/index.html')
+        // This is new messaagg
     }
 async login(username, password){
         await this.page.locator(this.loginLink).click();
