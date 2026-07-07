@@ -2,8 +2,6 @@
 import { defineConfig, devices } from '@playwright/test';
 
 
-  
-
 
 /**
  * Read environment variables from file.
@@ -18,13 +16,22 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+
+  expect:{
+    /** 
+     * Maximum time expect() should wait for thecondition to be met.
+     * 
+     */
+    timeout:5000
+  },
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  //retries: process.env.CI ? 2 : 0,
+
+  retries:2,  /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter:  [['html', { open: 'never' }]],
@@ -38,21 +45,36 @@ export default defineConfig({
   // },
 
   use: {
-        browserName: 'chromium',
+        //browserName: 'chromium',
         headless: false,
         //screenshot: 'only-on-failure',
+        //video: 'retain-on-failure'
+    },
+
+  /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'Chromium',
+      use: {
+        ...devices['Desktop Chrome'],
         screenshot: 'on',
         video: 'on',
         trace: 'on',
-        //video: 'retain-on-failure'
-    }
+      },
+    },
+    {
+      name: 'Firefox',
+      use: {
+        ...devices['Desktop Firefox'],
+      },
+    },
+    {
+      name: 'WebKit',
+      use: {
+        ...devices['Desktop Safari'],
+      },
+    },
 
-  /* Configure projects for major browsers */
-  // projects: [
-  //   {
-  //     name: 'chromium',
-  //     use: { ...devices['Desktop Chrome'] },
-  //   },
 
    
 
@@ -75,7 +97,7 @@ export default defineConfig({
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     // },
-  //],
+  ],
 
   /* Run your local dev server before starting the tests */
   // webServer: {
