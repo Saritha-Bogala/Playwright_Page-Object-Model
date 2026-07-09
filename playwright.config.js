@@ -61,8 +61,8 @@ export default defineConfig({
         video: 'on',
         trace: 'on',
       },
-    },
-    {
+    }
+   /* {
       name: 'Firefox',
       use: {
         ...devices['Desktop Firefox'],
@@ -73,7 +73,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Safari'],
       },
-    },
+    },*/
 
 
    
