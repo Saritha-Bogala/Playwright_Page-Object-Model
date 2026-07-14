@@ -5,15 +5,12 @@ test("Drag and Drop test", async ({page}) =>{
 
     await page.goto("https://www.globalsqa.com/demo-site/draganddrop/")
 
-    const sourceElement = await page.locator("#box6")
-    const targetElement = await page.locator("#box106")
-    
-    //Approach 1
-    await sourceElement.hover()
+    const frame1 = await page.frameLocator("//iframe[@class='demo-frame']").first()
+ //Approach 1
+    await frame1.getByText('High Tatras').first().hover()     
     await page.mouse.down()
-    
-    await targetElement.hover()
-    await page.mouse.up()
+    await frame1.locator("#trash").hover()
+        await page.mouse.up()
 
     await page.waitForTimeout(5000)
 })

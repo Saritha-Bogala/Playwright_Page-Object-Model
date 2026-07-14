@@ -11,7 +11,7 @@ test("Basic operations", async({page}) =>{
 
 })
 
-test.only("checkboxes", async({page}) =>{
+test("checkboxes", async({page}) =>{
     
   await page.goto("https://www.hyrtutorials.com/p/basic-controls.html")
 
